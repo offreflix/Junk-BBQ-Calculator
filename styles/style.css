@@ -96,6 +96,11 @@
   border-color: var(--color-primary-dark);
 }
 
+[data-theme="dark"] .input-field {
+  color: var(--color-text-primary);
+  background-color: var(--color-neutral-50);
+}
+
 /* ============================================================================
    GLOBAL STYLES
    ============================================================================ */

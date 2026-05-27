@@ -47,8 +47,19 @@
                 />
               </div>
 
-              <div class="input-wrapper">
-                <label for="kids" class="input-label">Crianças</label>
+              <div class="switch-row">
+                <div class="switch-info">
+                  <span class="switch-label-text">Crianças</span>
+                  <span class="switch-hint">Haverá crianças no churrasco?</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="kids-toggle-churrasco" onchange="toggleKids('churrasco')">
+                  <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                </label>
+              </div>
+
+              <div id="kids-input-churrasco" class="intensity-wrapper hidden">
+                <label for="kids" class="input-label">Quantidade de crianças</label>
                 <input
                   id="kids"
                   name="kids"
@@ -111,8 +122,19 @@
                 />
               </div>
 
-              <div class="input-wrapper">
-                <label for="sitio-kids" class="input-label">Crianças</label>
+              <div class="switch-row">
+                <div class="switch-info">
+                  <span class="switch-label-text">Crianças</span>
+                  <span class="switch-hint">Haverá crianças no sítio?</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="kids-toggle-sitio" onchange="toggleKids('sitio')">
+                  <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                </label>
+              </div>
+
+              <div id="kids-input-sitio" class="intensity-wrapper hidden">
+                <label for="sitio-kids" class="input-label">Quantidade de crianças</label>
                 <input
                   id="sitio-kids"
                   name="sitio-kids"

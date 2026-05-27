@@ -29,6 +29,24 @@ function switchTab(name) {
   document.getElementById("tab-" + name).classList.add("active");
 }
 
+// --- Kids toggle ---
+function toggleKids(tab) {
+  const wrapper = document.getElementById("kids-input-" + tab);
+  const enabled = document.getElementById("kids-toggle-" + tab).checked;
+  wrapper.classList.toggle("hidden", !enabled);
+  if (!enabled) {
+    const input = tab === "churrasco" ? document.getElementById("kids") : document.getElementById("sitio-kids");
+    input.value = "";
+  }
+}
+
+function getKids(tab) {
+  const enabled = document.getElementById("kids-toggle-" + tab).checked;
+  if (!enabled) return 0;
+  const id = tab === "churrasco" ? "kids" : "sitio-kids";
+  return Number(document.getElementById(id).value) || 0;
+}
+
 // --- Destilados ---
 function toggleDestilados(tab) {
   const options = document.getElementById("destilados-options-" + tab);
@@ -91,10 +109,10 @@ function costHTML(costs) {
 // --- Churrasco ---
 function calc() {
   const adults = Number(inputAdults.value);
-  const kids = Number(inputKids.value);
+  const kids = getKids("churrasco");
   const duration = Number(inputDuration.value);
 
-  if (!inputAdults.value || !inputKids.value || !inputDuration.value) {
+  if (!inputAdults.value || !inputDuration.value) {
     inputResult.innerHTML = '<p style="color: var(--color-neutral-500); text-align: center;">Preencha todos os campos</p>';
     return;
   }
@@ -137,12 +155,11 @@ function calc() {
 // --- Sítio ---
 function calcSitio() {
   const adults = Number(document.getElementById("sitio-adults").value);
-  const kids = Number(document.getElementById("sitio-kids").value);
+  const kids = getKids("sitio");
   const days = Number(document.getElementById("sitio-days").value);
   const result = document.getElementById("sitio-result");
 
   if (!document.getElementById("sitio-adults").value ||
-      !document.getElementById("sitio-kids").value ||
       !document.getElementById("sitio-days").value) {
     result.innerHTML = '<p style="color: var(--color-neutral-500); text-align: center;">Preencha todos os campos</p>';
     return;
