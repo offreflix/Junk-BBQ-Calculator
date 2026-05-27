@@ -9,11 +9,15 @@ let inputKids = document.getElementById("kids");
 let inputDuration = document.getElementById("duration");
 let inputResult = document.getElementById("result");
 
-// Calculations to get the quantity of food
 function calc() {
   let adults = inputAdults.value;
   let kids = inputKids.value;
   let duration = inputDuration.value;
+
+  if (!adults || !kids || !duration) {
+    inputResult.innerHTML = '<p style="color: var(--color-neutral-500); text-align: center;">Preencha todos os campos</p>';
+    return;
+  }
 
   let meatQnt =
     meatPerPerson(duration) * adults + (meatPerPerson(duration) / 2) * kids;
@@ -21,37 +25,39 @@ function calc() {
   let waterQnt =
     waterPerPerson(duration) * adults + (waterPerPerson(duration) / 2) * kids;
 
-  result.innerHTML = `<p><span>${meatQnt / 1000}</span> Kg de Carne</p>`;
-  result.innerHTML += `<p><span>${Math.ceil(beerQnt / 355)}</span> Latas de Cerveja</p>`;
-  result.innerHTML += `<p><span>${waterQnt2(waterQnt)}</span>`;
-  result.innerHTML += `${duration2(adults, kids, duration)}`;
+  let summary = duration2(adults, kids, duration);
+
+  inputResult.innerHTML = `
+    <div class="result-summary">
+      ${summary}
+    </div>
+    <div class="result-item">
+      <p>Carne</p>
+      <span>${(meatQnt / 1000).toFixed(1)} kg</span>
+    </div>
+    <div class="result-item">
+      <p>Cerveja</p>
+      <span>${Math.ceil(beerQnt / 355)} latas</span>
+    </div>
+    <div class="result-item">
+      <p>Bebidas</p>
+      <span>${waterQnt2(waterQnt)}</span>
+    </div>
+  `;
 }
 
 
-// Placing plural
 function waterQnt2(waterQnt) {
   let waterCount = Math.ceil(waterQnt / 1000);
-  if (waterCount > 1) {
-    return `<p><span>${waterCount}</span> litros de Bebidas</p>`;
-  } else if (waterCount < 1) {
-    return `<p><span>${waterCount}</span> litros de Bebidas</p>`;
-  } else {
-    return `<p><span>${waterCount}</span> litro de Bebida</p>`;
-  }
+  return waterCount > 1 ? `${waterCount} litros` : `${waterCount} litro`;
 }
 
 
-// Putting text on screen
 function duration2(adults, kids, duration) {
   let total = Number(adults) + Number(kids);
-  let totalPlural = total > 1 ? `<span>${total}</span> pessoas` : `<span>${total}</span> pessoa`;
-  if (duration > 1) {
-    return `<p>Para <span>${duration}</span> horas de Churrasco com ${totalPlural}.</p>`;
-  } else if (duration < 1) {
-    return `<p>Para o seu Churrasco com ${totalPlural}.</p>`;
-  } else {
-    return `<p>Para <span>${duration}</span> hora de Churrasco com ${totalPlural}.</p>`;
-  }
+  let totalPlural = total > 1 ? `${total} pessoas` : `${total} pessoa`;
+  let durationText = duration > 1 ? `${duration} horas` : duration == 1 ? `${duration} hora` : 'seu churrasco';
+  return `<p><strong>Para ${durationText} com ${totalPlural}</strong></p>`;
 }
 
 
