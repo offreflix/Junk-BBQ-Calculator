@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,6 +18,7 @@
   <body>
     <div class="app-layout">
       <header class="header">
+        <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Alternar tema">☀</button>
         <div class="header-content">
           <img src="./assets/logo.png" alt="Junk Logo" class="logo" />
           <h1>Churrascômetro</h1>
@@ -26,49 +27,101 @@
       </header>
 
       <main class="main-content">
+        <div class="tab-nav">
+          <button class="tab-btn active" id="tab-btn-churrasco" onclick="switchTab('churrasco')">🔥 Churrasco</button>
+          <button class="tab-btn" id="tab-btn-sitio" onclick="switchTab('sitio')">🏡 Sítio</button>
+        </div>
+
         <div class="calculator-card">
-          <form class="form-group" onsubmit="return false;">
-            <div class="input-wrapper">
-              <label for="adults" class="input-label">Adultos</label>
-              <input
-                id="adults"
-                name="adults"
-                type="number"
-                placeholder="Quantidade de adultos"
-                min="0"
-                class="input-field"
-              />
-            </div>
+          <div id="tab-churrasco" class="tab-panel active">
+            <form class="form-group" onsubmit="return false;">
+              <div class="input-wrapper">
+                <label for="adults" class="input-label">Adultos</label>
+                <input
+                  id="adults"
+                  name="adults"
+                  type="number"
+                  placeholder="Quantidade de adultos"
+                  min="0"
+                  class="input-field"
+                />
+              </div>
 
-            <div class="input-wrapper">
-              <label for="kids" class="input-label">Crianças</label>
-              <input
-                id="kids"
-                name="kids"
-                type="number"
-                placeholder="Quantidade de crianças"
-                min="0"
-                class="input-field"
-              />
-            </div>
+              <div class="input-wrapper">
+                <label for="kids" class="input-label">Crianças</label>
+                <input
+                  id="kids"
+                  name="kids"
+                  type="number"
+                  placeholder="Quantidade de crianças"
+                  min="0"
+                  class="input-field"
+                />
+              </div>
 
-            <div class="input-wrapper">
-              <label for="duration" class="input-label">Duração do evento (horas)</label>
-              <input
-                id="duration"
-                name="duration"
-                type="number"
-                placeholder="Ex: 4"
-                min="0"
-                max="24"
-                class="input-field"
-              />
-            </div>
+              <div class="input-wrapper">
+                <label for="duration" class="input-label">Duração do evento (horas)</label>
+                <input
+                  id="duration"
+                  name="duration"
+                  type="number"
+                  placeholder="Ex: 4"
+                  min="0"
+                  max="24"
+                  class="input-field"
+                />
+              </div>
 
-            <button class="btn btn-primary" onclick="calc()">Calcular</button>
-          </form>
+              <button class="btn btn-primary" onclick="calc()">Calcular</button>
+            </form>
 
-          <div id="result" class="result-container"></div>
+            <div id="result" class="result-container"></div>
+          </div>
+
+          <div id="tab-sitio" class="tab-panel">
+            <form class="form-group" onsubmit="return false;">
+              <div class="input-wrapper">
+                <label for="sitio-adults" class="input-label">Adultos</label>
+                <input
+                  id="sitio-adults"
+                  name="sitio-adults"
+                  type="number"
+                  placeholder="Quantidade de adultos"
+                  min="0"
+                  class="input-field"
+                />
+              </div>
+
+              <div class="input-wrapper">
+                <label for="sitio-kids" class="input-label">Crianças</label>
+                <input
+                  id="sitio-kids"
+                  name="sitio-kids"
+                  type="number"
+                  placeholder="Quantidade de crianças"
+                  min="0"
+                  class="input-field"
+                />
+              </div>
+
+              <div class="input-wrapper">
+                <label for="sitio-days" class="input-label">Dias</label>
+                <input
+                  id="sitio-days"
+                  name="sitio-days"
+                  type="number"
+                  placeholder="Ex: 3"
+                  min="1"
+                  max="30"
+                  class="input-field"
+                />
+              </div>
+
+              <button class="btn btn-primary" onclick="calcSitio()">Calcular</button>
+            </form>
+
+            <div id="sitio-result" class="result-container"></div>
+          </div>
         </div>
       </main>
     </div>
