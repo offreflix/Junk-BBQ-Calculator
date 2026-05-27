@@ -27,12 +27,12 @@
       </header>
 
       <main class="main-content">
-        <div class="tab-nav">
-          <button class="tab-btn active" id="tab-btn-churrasco" onclick="switchTab('churrasco')">🔥 Churrasco</button>
-          <button class="tab-btn" id="tab-btn-sitio" onclick="switchTab('sitio')">🏡 Sítio</button>
-        </div>
-
         <div class="calculator-card">
+          <div class="tab-nav">
+            <button class="tab-btn active" id="tab-btn-churrasco" onclick="switchTab('churrasco')">🔥 Churrasco</button>
+            <button class="tab-btn" id="tab-btn-sitio" onclick="switchTab('sitio')">🏡 Sítio</button>
+          </div>
+
           <div id="tab-churrasco" class="tab-panel active">
             <form class="form-group" onsubmit="return false;">
               <div class="input-wrapper">
@@ -72,9 +72,28 @@
                 />
               </div>
 
+              <div class="switch-row">
+                <div class="switch-info">
+                  <span class="switch-label-text">Destilados</span>
+                  <span class="switch-hint">Reduz cerveja e adiciona dose</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="destilados-churrasco" onchange="toggleDestilados('churrasco')">
+                  <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                </label>
+              </div>
+
+              <div id="destilados-options-churrasco" class="intensity-wrapper hidden">
+                <label class="input-label">Quantidade de destilados</label>
+                <div class="intensity-btns">
+                  <button type="button" class="intensity-btn active" data-level="pouco" onclick="setIntensity('churrasco', 'pouco')">Pouco</button>
+                  <button type="button" class="intensity-btn" data-level="medio" onclick="setIntensity('churrasco', 'medio')">Médio</button>
+                  <button type="button" class="intensity-btn" data-level="muito" onclick="setIntensity('churrasco', 'muito')">Muito</button>
+                </div>
+              </div>
+
               <button class="btn btn-primary" onclick="calc()">Calcular</button>
             </form>
-
             <div id="result" class="result-container"></div>
           </div>
 
@@ -117,9 +136,28 @@
                 />
               </div>
 
+              <div class="switch-row">
+                <div class="switch-info">
+                  <span class="switch-label-text">Destilados</span>
+                  <span class="switch-hint">Reduz cerveja e adiciona dose</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="destilados-sitio" onchange="toggleDestilados('sitio')">
+                  <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                </label>
+              </div>
+
+              <div id="destilados-options-sitio" class="intensity-wrapper hidden">
+                <label class="input-label">Quantidade de destilados</label>
+                <div class="intensity-btns">
+                  <button type="button" class="intensity-btn active" data-level="pouco" onclick="setIntensity('sitio', 'pouco')">Pouco</button>
+                  <button type="button" class="intensity-btn" data-level="medio" onclick="setIntensity('sitio', 'medio')">Médio</button>
+                  <button type="button" class="intensity-btn" data-level="muito" onclick="setIntensity('sitio', 'muito')">Muito</button>
+                </div>
+              </div>
+
               <button class="btn btn-primary" onclick="calcSitio()">Calcular</button>
             </form>
-
             <div id="sitio-result" class="result-container"></div>
           </div>
         </div>
