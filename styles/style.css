@@ -199,35 +199,36 @@ body {
 
 .tab-nav {
   display: flex;
-  justify-content: center;
   gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
 }
 
 .tab-btn {
-  padding: var(--spacing-sm) var(--spacing-xl);
+  padding: var(--spacing-sm) var(--spacing-lg);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   font-family: var(--font-family-accent);
-  border: 2px solid var(--color-border);
-  border-radius: 9999px;
+  border: none;
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: var(--transition-base);
-  background: var(--color-background);
+  background: var(--color-neutral-50);
   color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .tab-btn:hover {
-  border-color: var(--color-primary-light);
+  background: var(--color-neutral-100);
   color: var(--color-primary);
 }
 
 .tab-btn.active {
   background: var(--color-primary);
-  border-color: var(--color-primary);
   color: #ffffff;
+  box-shadow: var(--shadow-sm);
 }
 
 .tab-panel {
@@ -248,8 +249,179 @@ body {
   box-shadow: var(--shadow-lg);
   padding: var(--spacing-2xl);
   width: 100%;
-  max-width: 500px;
+  max-width: 640px;
   border: 1px solid var(--color-border);
+}
+
+/* ============================================================================
+   TOGGLE SWITCH
+   ============================================================================ */
+
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md);
+  background: var(--color-neutral-50);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-border);
+}
+
+.switch-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.switch-label-text {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.switch-hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggle-track {
+  position: absolute;
+  inset: 0;
+  background: var(--color-neutral-300);
+  border-radius: 9999px;
+  transition: var(--transition-base);
+}
+
+.toggle-thumb {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.toggle-switch input:checked + .toggle-track {
+  background: var(--color-primary);
+}
+
+.toggle-switch input:checked + .toggle-track .toggle-thumb {
+  transform: translateX(22px);
+}
+
+/* ============================================================================
+   INTENSITY BUTTONS
+   ============================================================================ */
+
+.intensity-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.intensity-btns {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.intensity-btn {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-family-accent);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-background);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-align: center;
+}
+
+.intensity-btn:hover {
+  border-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.intensity-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+
+/* ============================================================================
+   COST ESTIMATE
+   ============================================================================ */
+
+.cost-estimate {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: var(--color-neutral-50);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.cost-title {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.cost-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  padding: var(--spacing-xs) 0;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.cost-row:last-of-type {
+  border-bottom: none;
+}
+
+.cost-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-sm);
+  border-top: 2px solid var(--color-border);
+}
+
+/* ============================================================================
+   UTILITIES
+   ============================================================================ */
+
+.hidden {
+  display: none !important;
 }
 
 /* ============================================================================
